@@ -2,7 +2,7 @@ import React from 'react';
 
 import BulkEmailPendingTasksAlert from '../BulkEmailPendingTasksAlert';
 import {
-  initializeMockApp, render, screen,
+  initializeMockApp, render, screen, waitFor,
 } from '../../../../setupTest';
 
 describe('Testing BulkEmailPendingTasksAlert Component', () => {
@@ -10,11 +10,13 @@ describe('Testing BulkEmailPendingTasksAlert Component', () => {
     await initializeMockApp();
   });
 
-  test('Render without Public path', async () => {
+  test('Render without Public path', () => {
     render(<BulkEmailPendingTasksAlert courseId="test-course-id" />);
 
-    const linkEl = await screen.findByText('Course Info');
-    expect(linkEl.href).toEqual('http://localhost:18000/courses/test-course-id/instructor#view-course-info');
+    waitFor(() => {
+      const linkEl = screen.findByText('Course Info');
+      expect(linkEl.href).toEqual('http://localhost:18000/courses/test-course-id/instructor#view-course-info');
+    });
   });
 
   test('Render with Public path', async () => {

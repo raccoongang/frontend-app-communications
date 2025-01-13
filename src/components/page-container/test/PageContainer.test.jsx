@@ -4,7 +4,7 @@
 import React from 'react';
 import { Factory } from 'rosie';
 import {
-  act, cleanup, initializeMockApp, render, screen,
+  act, cleanup, initializeMockApp, render, screen, waitFor,
 } from '../../../setupTest';
 
 import PageContainer from '../PageContainer';
@@ -42,8 +42,10 @@ describe('PageContainer', () => {
       render(<PageContainer />);
 
       // Look for the org, title, and number of the course, which should be displayed in the Header.
-      expect(await screen.findByText(`${courseMetadata.org} ${courseMetadata.number}`)).toBeTruthy();
-      expect(await screen.findByText(courseMetadata.title)).toBeTruthy();
+      waitFor(() => {
+        expect(screen.findByText(`${courseMetadata.org} ${courseMetadata.number}`)).toBeTruthy();
+        expect(screen.findByText(courseMetadata.title)).toBeTruthy();
+      });
     });
   });
 

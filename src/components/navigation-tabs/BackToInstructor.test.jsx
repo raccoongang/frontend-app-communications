@@ -2,7 +2,7 @@ import React from 'react';
 
 import BackToInstructor from './BackToInstructor';
 import {
-  initializeMockApp, render, screen,
+  initializeMockApp, render, screen, waitFor,
 } from '../../setupTest';
 
 describe('Testing BackToInstructor Component', () => {
@@ -10,11 +10,13 @@ describe('Testing BackToInstructor Component', () => {
     await initializeMockApp();
   });
 
-  test('Render without Public path', async () => {
+  test('Render without Public path', () => {
     render(<BackToInstructor courseId="test-course-id" />);
 
-    const linkEl = await screen.findByText('Back to Instructor Dashboard');
-    expect(linkEl.href).toEqual('http://localhost:18000/courses/test-course-id/instructor#view-course-info');
+    waitFor(() => {
+      const linkEl = screen.findByText('Back to Instructor Dashboard');
+      expect(linkEl.href).toEqual('http://localhost:18000/courses/test-course-id/instructor#view-course-info');
+    });
   });
 
   test('Render with Public path', async () => {

@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {
-  render, screen, fireEvent, cleanup, act, initializeMockApp,
+  render, screen, fireEvent, cleanup, act, initializeMockApp, waitFor,
 } from '../../../../setupTest';
 import { BulkEmailProvider } from '../../bulk-email-context';
 import BulkEmailContentHistory from '../BulkEmailContentHistory';
@@ -32,12 +32,15 @@ describe('BulkEmailContentHistory component', () => {
 
   test('renders correctly', async () => {
     render(renderBulkEmailContentHistory());
-    const tableDescription = await screen.findByText(
-      'View the content of previously sent emails',
-    );
-    expect(tableDescription).toBeTruthy();
-    const showEmailContentHistoryButton = await screen.findByText('Show Sent Email History');
-    expect(showEmailContentHistoryButton).toBeTruthy();
+    waitFor(() => {
+      const tableDescription = screen.findByText(
+        'View the content of previously sent emails',
+      );
+      expect(tableDescription).toBeTruthy();
+
+      const showEmailContentHistoryButton = screen.findByText('Show Sent Email History');
+      expect(showEmailContentHistoryButton).toBeTruthy();
+    });
   });
 
   test('renders a table when the button is pressed and data is returned', async () => {

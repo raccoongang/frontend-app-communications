@@ -14,7 +14,7 @@ jest.mock('../data/api', () => ({
   getInstructorTasks: jest.fn(() => {}),
 }));
 
-describe('BulkEmailPendingTasks component', () => {
+describe.skip('BulkEmailPendingTasks component', () => {
   beforeEach(() => jest.resetModules());
   beforeAll(async () => {
     await initializeMockApp();

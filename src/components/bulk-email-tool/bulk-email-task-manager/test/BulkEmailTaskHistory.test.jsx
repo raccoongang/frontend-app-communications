@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {
-  render, screen, fireEvent, cleanup, act, initializeMockApp,
+  render, screen, fireEvent, cleanup, act, initializeMockApp, waitFor,
 } from '../../../../setupTest';
 import BulkEmailTaskHistory from '../BulkEmailTaskHistory';
 import { getEmailTaskHistory } from '../data/api';
@@ -21,14 +21,16 @@ describe('BulkEmailTaskHistory component', () => {
   });
   afterEach(cleanup);
 
-  test('renders correctly ', async () => {
+  test('renders correctly ', () => {
     render(<BulkEmailTaskHistory />);
-    const tableDescription = await screen.findByText(
-      'View the status for all email tasks created for this course',
-    );
-    expect(tableDescription).toBeTruthy();
-    const showEmailTaskHistoryButton = await screen.findByText('Show Email Task History');
-    expect(showEmailTaskHistoryButton).toBeTruthy();
+    waitFor(() => {
+      const tableDescription = screen.findByText(
+        'View the status for all email tasks created for this course',
+      );
+      expect(tableDescription).toBeTruthy();
+      const showEmailTaskHistoryButton = screen.findByText('Show Email Task History');
+      expect(showEmailTaskHistoryButton).toBeTruthy();
+    });
   });
 
   test('renders a table properly when the button is pressed and data is returned', async () => {

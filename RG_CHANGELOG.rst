@@ -9,6 +9,15 @@ and this project adheres to customized Semantic Versioning e.g.: `teak-rg.1`
 [Unreleased]
 ************
 
+[release/teak-rg.3] - 2026-02-27
+********************************
+
+Maintenance:
+============
+* Rebased on upstream/release/teak.3
+
+[release/teak-rg.2]
+*******************
 [release/teak-rg.1] - 2025-08-06
 ********************************
 

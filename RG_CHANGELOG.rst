@@ -9,6 +9,10 @@ and this project adheres to customized Semantic Versioning e.g.: `teak-rg.1`
 [Unreleased]
 ************
 
+Added:
+======
+* Sync the bulk-email TinyMCE editor surface with the live dark ``theme-variant`` cookie (ENG-63)
+
 [release/teak-rg.3] - 2026-02-27
 ********************************
 

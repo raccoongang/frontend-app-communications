@@ -50,9 +50,9 @@ function isDarkThemeActive() {
 }
 
 function applyEditorTheme(editor) {
-  if (!editor || editor.removed) return;
+  if (!editor || editor.removed) { return; }
   const doc = editor.getDoc && editor.getDoc();
-  if (!doc || !doc.head) return;
+  if (!doc || !doc.head) { return; }
   let styleEl = doc.getElementById('rg-dark-content');
   if (isDarkThemeActive()) {
     if (!styleEl) {
@@ -60,7 +60,7 @@ function applyEditorTheme(editor) {
       styleEl.id = 'rg-dark-content';
       doc.head.appendChild(styleEl);
     }
-    if (styleEl.textContent !== DARK_CONTENT_CSS) styleEl.textContent = DARK_CONTENT_CSS;
+    if (styleEl.textContent !== DARK_CONTENT_CSS) { styleEl.textContent = DARK_CONTENT_CSS; }
   } else if (styleEl) {
     styleEl.remove();
   }
@@ -79,7 +79,7 @@ export default function TextEditor(props) {
   useEffect(() => {
     const sync = () => applyEditorTheme(editorRef.current);
     const intervalId = setInterval(sync, 1000);
-    const onMessage = (e) => { if (e && e.data && e.data.type === 'rg-theme-variant') sync(); };
+    const onMessage = (e) => { if (e && e.data && e.data.type === 'rg-theme-variant') { sync(); } };
     window.addEventListener('message', onMessage);
     return () => { clearInterval(intervalId); window.removeEventListener('message', onMessage); };
   }, []);

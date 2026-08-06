@@ -9,6 +9,10 @@ and this project adheres to customized Semantic Versioning e.g.: `verawood-rg.1`
 [Unreleased]
 ************
 
+Added:
+======
+* Sync the bulk-email TinyMCE editor surface with the live dark ``theme-variant`` cookie (ENG-63)
+
 Removed:
 ========
 * codecov CI action — the fork has no codecov project, so the step failed every run (VERA-6)
